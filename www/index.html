@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="modules/taskList/taskList.css" />
+    <link rel="stylesheet" href="modules/taskStats/taskStats.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="left-panel">
+        <h1>Task Tracker</h1>
+
+        <!-- Button to add a new task -->
+        <div class="add-task-area">
+          <button id="create-new-task-btn">📝 Add New Task</button>
+          <button id="start-fresh-btn">🧺 Start Fresh</button>
+        </div>
+
+        <!-- Task Statistics Area -->
+        <section id="task-stats" class="task-stats-container">
+          <h2>Summary</h2>
+          <div class="stats-grid">
+            <div class="stat-card" id="total-tasks-card">
+              <span class="stat-value" id="total-tasks">0</span>
+              <span class="stat-label">Total Tasks</span>
+            </div>
+            <div class="stat-card">
+              <!-- Completed card - not clickable for filtering -->
+              <span class="stat-value" id="completed-tasks">0</span>
+              <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-card" id="remaining-tasks-card">
+              <span class="stat-value" id="remaining-tasks">0</span>
+              <span class="stat-label">Remaining</span>
+            </div>
+          </div>
+          <div class="progress-container">
+            <span class="stat-label">Completion</span>
+            <div class="progress-bar-outer">
+              <div
+                class="progress-bar-inner"
+                id="progress-bar-inner"
+                style="width: 0%"
+              ></div>
+              <span class="progress-bar-text" id="completion-percentage"
+                >0%</span
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-panel">
+        <!-- Task List Module Area -->
+        <section id="task-list-module" class="task-list-container">
+          <!-- Removed H2 "Tasks" for cleaner look, can be added back if needed -->
+          <div id="column-progress-bars" class="column-progress-container">
+            <div class="column-progress">
+              <div class="progress-bar-outer">
+                <div
+                  class="progress-bar-inner"
+                  id="col-progress-bar-1"
+                  style="width: 0%"
+                ></div>
+                <span class="progress-bar-text" id="col-progress-text-1"
+                  >0%</span
+                >
+              </div>
+            </div>
+            <div class="column-progress">
+              <div class="progress-bar-outer">
+                <div
+                  class="progress-bar-inner"
+                  id="col-progress-bar-2"
+                  style="width: 0%"
+                ></div>
+                <span class="progress-bar-text" id="col-progress-text-2"
+                  >0%</span
+                >
+              </div>
+            </div>
+            <div class="column-progress">
+              <div class="progress-bar-outer">
+                <div
+                  class="progress-bar-inner"
+                  id="col-progress-bar-3"
+                  style="width: 0%"
+                ></div>
+                <span class="progress-bar-text" id="col-progress-text-3"
+                  >0%</span
+                >
+              </div>
+            </div>
+          </div>
+          <ul id="task-list">
+            <!-- Tasks loaded from Local Storage or added dynamically -->
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <span class="modal-close-btn">&times;</span>
+        <p id="modal-message">Are you sure?</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm-btn">Confirm</button>
+          <button id="modal-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

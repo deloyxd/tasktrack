@@ -1,0 +1,115 @@
+.task-stats-container {
+  background-color: #f9f9f9;
+  padding: 15px 20px; /* Adjusted padding */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-stats-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px; /* Increased margin */
+  color: #333;
+  font-size: 1.2em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px; /* Adjusted padding */
+  text-align: center; /* Center title */
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 15px; /* Space between cards */
+  margin-bottom: 20px; /* Space before progress bar */
+}
+
+.stat-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 2.2em; /* Larger number */
+  font-weight: bold;
+  color: #007bff; /* Theme color */
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9em; /* Smaller text */
+  color: #555;
+}
+
+/* Progress Bar Styles */
+.progress-container {
+  margin-top: 15px;
+}
+
+.progress-container .stat-label {
+  /* Style label specifically for progress */
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #555;
+  text-align: left; /* Align label left */
+}
+
+.progress-bar-outer {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  height: 20px;
+  width: 100%;
+  overflow: hidden; /* Ensure inner bar stays within bounds */
+  position: relative; /* For positioning text */
+}
+
+.progress-bar-inner {
+  background-color: #22cc69b0; /* Green for progress */
+  height: 100%;
+  border-radius: 10px 0 0 10px; /* Keep left radius */
+  transition: width 0.4s ease-in-out; /* Smooth transition */
+  text-align: center; /* Center text if needed inside */
+  line-height: 20px; /* Vertically center text */
+  color: white;
+  font-size: 0.8em;
+}
+
+/* Ensure inner bar right radius is applied only when full */
+.progress-bar-inner[style*="width: 100%"] {
+  border-radius: 10px;
+}
+
+.progress-bar-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 20px; /* Match outer height */
+  color: #ffffff; /* Dark text for visibility */
+  font-size: 0.85em;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); /* Slight shadow for contrast */
+}
+
+/* Style for the active filter card */
+.task-stats-container .stat-card.active {
+  background-color: #e0e0e0; /* Slightly darker background */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow */
+  transform: translateY(1px); /* Slight press effect */
+}
+
+/* Ensure clickable cards have a pointer cursor */
+#total-tasks-card,
+#remaining-tasks-card {
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease; /* Smooth transition */
+}

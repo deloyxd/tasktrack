@@ -1,0 +1,233 @@
+.task-list-container {
+  margin-top: 20px;
+}
+
+#task-list {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  display: grid; /* Enable Grid Layout */
+  grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+  gap: 15px; /* Add spacing between grid items */
+}
+
+/* Styles for the column progress bar container */
+.column-progress-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Match task list columns */
+  gap: 15px; /* Match task list gap */
+  margin-bottom: 15px; /* Space below progress bars */
+  padding: 0 5px; /* Align slightly with task items padding */
+}
+
+/* Optional: Styles for individual progress bar wrapper if needed */
+.column-progress {
+  /* display: flex; */ /* Might not be needed */
+  /* align-items: center; */
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically within the flex container */
+  align-self: stretch; /* Make grid item stretch to fill row height */
+  padding: 10px 5px 10px 0; /* Adjust padding for handle */
+  background-color: #fdfdfd;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  /* margin-bottom: 8px; */ /* Remove margin, rely on grid gap */
+  transition: background-color 0.2s ease, opacity 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease; /* Add transform and box-shadow to transition */
+  /* Initial opacity removed - handled by animation keyframe */
+  /* opacity: 0; */
+  /* transform: scale(0.95); */ /* Remove transform */
+}
+
+/* Hover effect for task items */
+.task-item:hover {
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  /* Ensure hover doesn't apply during drag */
+  cursor: default; /* Keep default cursor unless handle is hovered */
+}
+/* Keep grab cursor specifically on handle during hover */
+.task-item:hover .drag-handle {
+  cursor: grab;
+}
+
+/* Animation applied when task is added */
+.task-item.task-enter-active {
+  animation: taskEnter 0.3s ease forwards;
+}
+
+/* Animation applied before task is removed */
+.task-item.task-exit-active {
+  animation: taskExit 0.3s ease forwards;
+}
+
+/* Remove last-child rule as margin is removed from all items */
+/*
+.task-item:last-child {
+  margin-bottom: 0;
+}
+*/
+
+/* Drag Handle Style */
+.drag-handle {
+  display: inline-block;
+  padding: 0 10px; /* Space around the handle */
+  cursor: grab;
+  color: #ccc;
+  font-size: 1.2rem; /* Make handle slightly larger */
+  line-height: 1; /* Align vertically */
+  user-select: none; /* Prevent text selection */
+  align-self: center; /* Align handle vertically */
+}
+
+.task-item.dragging .drag-handle {
+  cursor: grabbing;
+}
+
+.task-item .task-text {
+  /* Target the specific span */
+  flex-grow: 1;
+  margin-left: 5px; /* Space between handle and text */
+  margin-right: 10px;
+  padding: 2px 4px; /* Add slight padding for better focus outline */
+  border-radius: 3px;
+  /* font-style: bold; */ /* Removed bold style */
+  word-break: break-word; /* Prevent long text from overflowing */
+  align-self: center; /* Align text vertically */
+  cursor: text; /* Indicate text is editable */
+  outline: none; /* Remove default focus outline initially */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Style when the text span has focus but isn't the active 'editing' element (e.g., tabbing) */
+.task-item .task-text:focus {
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); /* Subtle focus ring */
+}
+
+/* Style when actively editing */
+.task-item .task-text.editing {
+  background-color: #fff; /* White background during edit */
+  box-shadow: 0 0 0 2px #77aaff; /* Clearer focus ring during edit */
+  cursor: text;
+}
+
+/* Styles for Completed Tasks */
+.task-item.completed {
+  background-color: #e8f8f5; /* Light green background */
+  border-color: #a3e4d7; /* Slightly darker green border */
+}
+
+.task-item.completed .task-text {
+  /* Target the specific span */
+  /* Remove line-through and color changes from text */
+  /* text-decoration: line-through; */
+  /* color: #aaa; */
+  /* font-style: italic; */
+  color: #1e8449; /* Optional: Darker green text for contrast */
+}
+
+/* Ensure buttons are still visible on green background */
+.task-item.completed .task-actions button {
+  color: #1e8449; /* Match text color or choose another contrasting color */
+}
+
+.task-item.completed .task-actions button:hover {
+  background: none; /* DO NOT CHANGE THIS */
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px; /* Space between buttons */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+/* Emoji Button Styles */
+.task-actions button {
+  background: none;
+  border: none;
+  color: inherit; /* Inherit color from parent */
+  padding: 5px; /* Adjust padding for click area */
+  font-size: 1.3rem; /* Make emojis larger */
+  line-height: 1; /* Ensure proper vertical alignment */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: inline-flex; /* Helps center emoji */
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions button:hover {
+  background: none; /* DO NOT CHANGE THIS */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* No specific background colors needed anymore for complete/delete */
+/* .complete-btn {} */
+/* .delete-btn {} */
+/* Style for the item being dragged */
+.task-item.dragging {
+  opacity: 0.5;
+  background-color: #eaf2f8; /* Light blue background */
+  border: 1px dashed #aed6f1;
+}
+
+/* Optional: Style for potential drop targets */
+/*
+.task-item.drag-over {
+  border-top: 2px solid #3498db;
+}
+*/
+
+/* Keyframes for Animations */
+@keyframes taskEnter {
+  from {
+    opacity: 0;
+    /* transform: scale(0.95) translateY(-10px); */ /* Remove transform */
+  }
+  to {
+    opacity: 1;
+    /* transform: scale(1) translateY(0); */ /* Remove transform */
+  }
+}
+
+@keyframes taskExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  #task-list {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 10px; /* Adjust gap for single column */
+  }
+
+  .column-progress-container {
+    /* grid-template-columns: 1fr; */ /* Single column for progress bars */
+    /* gap: 10px; */ /* Adjust gap */
+    /* padding: 0; */ /* Remove horizontal padding */
+    display: none; /* Hide the progress bars on mobile */
+  }
+
+  .task-item {
+    padding: 12px 10px; /* Adjust padding slightly for mobile */
+  }
+
+  .drag-handle {
+    padding: 0 8px; /* Adjust handle padding */
+  }
+
+  .task-actions button {
+    font-size: 1.2rem; /* Slightly smaller icons if needed */
+  }
+}
