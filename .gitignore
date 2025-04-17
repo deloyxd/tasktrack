@@ -1,2 +1,10 @@
 node_modules/
 config.js
+
+# Build output
+www/
+
+# Android specific
+android/build/
+android/.gradle/
+android/.idea/

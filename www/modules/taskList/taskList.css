@@ -212,6 +212,19 @@
     gap: 10px; /* Adjust gap for single column */
   }
 
+  /* Adjust grid to 2 columns in mobile view */
+  .left-panel .stats-grid {
+    /* Increased specificity */
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center; /* Center the grid items */
+  }
+
+  /* Hide completed tasks card in mobile view */
+  .left-panel .stats-grid .stat-card:nth-child(2) {
+    /* Increased specificity */
+    display: none;
+  }
+
   .column-progress-container {
     /* grid-template-columns: 1fr; */ /* Single column for progress bars */
     /* gap: 10px; */ /* Adjust gap */

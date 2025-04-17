@@ -90,8 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 2. Add event listener for the new task button
+  console.log("Attempting to find create-new-task-btn...");
   const createNewTaskBtn = document.getElementById("create-new-task-btn");
   if (createNewTaskBtn) {
+    console.log("Found create-new-task-btn. Attaching listener...");
     createNewTaskBtn.addEventListener("click", () => {
       try {
         // Add a new task with a default title
@@ -108,8 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 3. Add event listener for the start fresh button
+  console.log("Attempting to find start-fresh-btn...");
   const startFreshBtn = document.getElementById("start-fresh-btn");
   if (startFreshBtn) {
+    console.log("Found start-fresh-btn. Attaching listener...");
     startFreshBtn.addEventListener("click", () => {
       showConfirmationModal(
         "Are you sure you want to delete ALL tasks? This cannot be undone.",
@@ -140,10 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 4. Add event listeners for task filtering cards
+  console.log("Attempting to find filter cards...");
   const totalTasksCard = document.getElementById("total-tasks-card");
   const remainingTasksCard = document.getElementById("remaining-tasks-card");
 
   if (totalTasksCard && remainingTasksCard) {
+    console.log("Found filter cards. Attaching listeners...");
     totalTasksCard.addEventListener("click", () => {
       setTaskFilter("all");
       totalTasksCard.classList.add("active");
@@ -190,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
   }
+  console.log("Attempting to find chat UI elements...");
 
   if (
     chatToggleBtn &&
@@ -200,6 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatSendBtn &&
     chatClearBtn // Check if clear button exists
   ) {
+    console.log("Found chat UI elements. Initializing chat functionality...");
     // REMOVED: let aiUsedSuccessfully = false;
     // REMOVED: function setChatInputEnabled(enabled) { ... } - Moved outside
 
