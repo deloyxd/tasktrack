@@ -7,3 +7,6 @@ This is a product of a vibe coding setup:
 
 App Description:
 A simple and minimalist task tracker app that tracks and manages your tasks progress.
+
+Latest Release (APK):
+https://github.com/deloyxd/tasktrack/releases/tag/apk
